@@ -1,0 +1,19 @@
+name: Deploy to Production
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Deploy application
+        run: |
+          echo "Deploying to production..."
+          echo "Deployment completed"
+        env:
+          API_URL: ${{ vars.API_URL }}
+          BUILD_VERSION: ${{ vars.BUILD_VERSION }}
